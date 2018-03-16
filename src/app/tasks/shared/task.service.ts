@@ -28,7 +28,7 @@ export class TaskService {
   }
 
   public getImportantTasks(): Promise<Task[]> {
-    return Promise.resolve(TASKS.filter(t => t.id > 3));
+    return Promise.resolve(TASKS.filter(t => t.id % 2 == 0) );
   }
 
   public getTask(id: number): Promise<Task> {
