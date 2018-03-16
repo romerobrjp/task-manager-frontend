@@ -15,6 +15,10 @@ import { TaskService } from './tasks/shared/task.service';
 // forRoot vai retornar um modulo com todas as configuracoes das rotas da app
 const ROUTES = RouterModule.forRoot([
   {
+    path: 'tasks/:id',
+    component: TaskDetailComponent
+  },
+  {
     path: 'tasks',
     component: TasksComponent
   },
