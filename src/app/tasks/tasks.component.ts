@@ -9,7 +9,7 @@ import { TaskService } from './shared/task.service';
 })
 
 export class TasksComponent implements OnInit {
-  public tasks: Array<Task>;
+  public tasks: {};
   public selectedTask: Task;
 
   public constructor(private taskService: TaskService) {}
