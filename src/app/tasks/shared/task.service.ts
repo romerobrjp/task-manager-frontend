@@ -14,8 +14,8 @@ const TASKS: Array<Task> = [
 
 @Injectable()
 export class TaskService {
-  public getTasks(): Promise<Task[]> {
-    let promise = new Promise(function(resolve, reject) {
+  public getTasks(): Promise<{}> {
+    let promise = new Promise((resolve, reject) => {
       if (TASKS.length > 0) {
         resolve(TASKS);
       } else {
@@ -25,5 +25,9 @@ export class TaskService {
     })
 
     return promise;
+  }
+
+  public getImportantTasks(): Promise<{}> {
+    return Promise.resolve(TASKS.filter(t => t.id > 3))
   }
 }

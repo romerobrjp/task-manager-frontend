@@ -6,24 +6,36 @@ import { RouterModule, Router } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TasksComponent } from  './tasks/tasks.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
+import { TasksComponent } from  './tasks/tasks.component';
+import { TaskService } from './tasks/shared/task.service';
 
 // forRoot vai retornar um modulo com todas as configuracoes das rotas da app
 const ROUTES = RouterModule.forRoot([
   {
     path: 'tasks',
     component: TasksComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   }
 ])
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     NavbarComponent,
-    TasksComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +44,7 @@ const ROUTES = RouterModule.forRoot([
     RouterModule,
     ROUTES
   ],
-  providers: [],
+  providers: [ TaskService ],
   bootstrap: [AppComponent]
 })
 
