@@ -9,7 +9,7 @@ import { Task } from '../tasks/shared/task.model';
 })
 
 export class DashboardComponent implements OnInit {
-  public tasks: {};
+  public tasks: Task[];
 
   public ngOnInit() {
     this.taskService.getImportantTasks()
