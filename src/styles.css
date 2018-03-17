@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  background-color: #333;
-  color: white;
+body.container {
+  background-color: #002B36;
+  color: #839496;
 }
