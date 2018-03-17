@@ -12,9 +12,9 @@
       <td>{{ task.id }}</td>
       <td>{{ task.title }}</td>
       <td>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskDetailModal" (click)="onSelect(task)">
+        <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
           Detalhes
-        </button>
+        </a>
         <button class="btn btn-danger">Excluir</button>
       </td>
     </tr>

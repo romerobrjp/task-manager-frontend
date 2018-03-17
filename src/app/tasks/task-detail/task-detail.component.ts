@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
+import { Location } from '@angular/common';
+
 import 'rxjs/add/operator/switchMap';
 
 import { Task } from '../shared/task.model';
@@ -15,7 +17,8 @@ export class TaskDetailComponent implements OnInit {
 
   public constructor(
     private taskService: TaskService,
-    private route: ActivatedRoute // este objeto entrega as informações referentes à rota que está ativa no momento da navegação
+    private route: ActivatedRoute, // este objeto entrega as informações referentes à rota que está ativa no momento da navegação
+    private location: Location
   ) {
   }
 
@@ -24,5 +27,9 @@ export class TaskDetailComponent implements OnInit {
     this.route.params.switchMap(
       (params: Params) => this.taskService.getTask(+params['id'])
     ).subscribe(task => this.task = task);
+  }
+
+  public goBack() {
+    this.location.back();
   }
 }
