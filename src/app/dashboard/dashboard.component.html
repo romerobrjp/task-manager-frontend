@@ -10,9 +10,7 @@
     <tr *ngFor="let task of tasks">
       <td>{{task.title}}</td>
       <td>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskDetailModal" (click)="onSelect(task)">
-          Detalhes
-        </button>
+        <a [routerLink]="['/tasks', task.id]" class="btn btn-info">Detalhes</a>
       </td>
     </tr>
   </tbody>
