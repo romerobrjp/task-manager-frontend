@@ -1,37 +1,21 @@
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Router } from '@angular/router';
 
-
+// Components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { TasksComponent } from  './tasks/tasks.component';
+
+// Services
 import { TaskService } from './tasks/shared/task.service';
 
-// forRoot vai retornar um modulo com todas as configuracoes das rotas da app
-const ROUTES = RouterModule.forRoot([
-  {
-    path: 'tasks/:id',
-    component: TaskDetailComponent
-  },
-  {
-    path: 'tasks',
-    component: TasksComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  }
-])
+// Modules
+import { AppRoutingModule } from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -45,8 +29,7 @@ const ROUTES = RouterModule.forRoot([
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule,
-    ROUTES
+    AppRoutingModule
   ],
   providers: [ TaskService ],
   bootstrap: [AppComponent]
