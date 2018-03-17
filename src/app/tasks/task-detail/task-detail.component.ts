@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
+import 'rxjs/add/operator/switchMap';
 
 import { Task } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
@@ -19,9 +20,9 @@ export class TaskDetailComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.taskService.getTask(+params['id'])
-        .then(task => this.task = task)
-    })
+    // switchMap vai executar as coisas antes de passar pro subscribe
+    this.route.params.switchMap(
+      (params: Params) => this.taskService.getTask(+params['id'])
+    ).subscribe(task => this.task = task);
   }
 }
