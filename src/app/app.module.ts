@@ -13,7 +13,7 @@ import { TasksComponent } from  './tasks/tasks.component';
 
 // Services
 import { TaskService } from './tasks/shared/task.service';
-// import { InMemoryTaskDataService } from "./in-memory-task-data-service";
+import { InMemoryTaskDataService } from "./in-memory-task-data.service";
 
 // Modules
 import { AppRoutingModule } from "./app-routing.module";
@@ -33,7 +33,7 @@ import { InMemoryWebApiModule } from "angular-in-memory-web-api";
     HttpModule,
     AppRoutingModule,
     // InMemoryWebApiModule.forRoot(InMemoryTaskDataService, { apiBase: 'api'} )
-    // InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [ TaskService ],
   bootstrap: [AppComponent]

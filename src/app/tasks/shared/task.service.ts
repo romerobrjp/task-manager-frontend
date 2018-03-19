@@ -4,9 +4,11 @@ import { Injectable } from '@angular/core'; // avisa pro angular que talvez essa
 
 
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
-import { Task } from './task.model'
+import { Task } from './task.model';
 
 @Injectable()
 export class TaskService {
@@ -15,18 +17,29 @@ export class TaskService {
   constructor(private http: Http) {}
 
   public getTasks(): Observable<Task[]> {
-    return this.http.get(this.tasksUrl).map( (response: Response) => response.json().data as Task[]);
+    return this.http.get(this.tasksUrl)
+      .catch(this.handleErrors)
+      .map((response: Response) => response.json().data as Task[]);
   }
 
   public getImportantTasks(): Observable<Task[]> {
-    return this.getTasks().map(tasks => tasks.filter(t => t.id % 2 == 0) );
+    return this.getTasks()
+      .catch(this.handleErrors)
+      .map(tasks => tasks.filter(t => t.id % 2 == 0) );
   }
 
   public getTask(id: number): Observable<Task> {
     let url = `${this.tasksUrl}/${id}`;
 
-    return this.http.get(url).map(
-      (response: Response) => response.json().data as Task
-    );
+    return this.http.get(url)
+      .catch(this.handleErrors)
+      .map(
+        (response: Response) => response.json().data as Task
+      );
+  }
+
+  private handleErrors(error: Response) {
+    console.log('Deu erro: ', error);
+    return Observable.throw(error);
   }
 }

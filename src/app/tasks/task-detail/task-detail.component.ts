@@ -24,9 +24,14 @@ export class TaskDetailComponent implements OnInit {
 
   public ngOnInit() {
     // switchMap vai executar as coisas antes de passar pro subscribe
-    this.route.params.switchMap(
+    this.route.params
+    .switchMap(
       (params: Params) => this.taskService.getTask(+params['id'])
-    ).subscribe(task => this.task = task);
+    )
+    .subscribe(
+      task => this.task = task,
+      error => alert('Ocorreu um erro no ngOnInit de TaskDetailComponent: ' + error)
+    );
   }
 
   public goBack() {
