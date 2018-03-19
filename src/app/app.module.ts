@@ -33,7 +33,7 @@ import { InMemoryWebApiModule } from "angular-in-memory-web-api";
     HttpModule,
     AppRoutingModule,
     // InMemoryWebApiModule.forRoot(InMemoryTaskDataService, { apiBase: 'api'} )
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    // InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [ TaskService ],
   bootstrap: [AppComponent]
