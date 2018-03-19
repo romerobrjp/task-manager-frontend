@@ -28,9 +28,9 @@ export class TaskService {
     return this.http.get(this.tasksUrl).map( (response: Response) => response.json().data as Task[]);
   }
 
-  // public getImportantTasks(): Promise<Task[]> {
-  //   return Promise.resolve(TASKS.filter(t => t.id % 2 == 0) );
-  // }
+  public getImportantTasks(): Observable<Task[]> {
+    return this.getTasks().map(tasks => tasks.filter(t => t.id % 2 == 0) );
+  }
 
   public getTask(id: number): Observable<Task> {
     let url = `${this.tasksUrl}/${id}`;
