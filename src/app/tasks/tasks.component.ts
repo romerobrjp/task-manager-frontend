@@ -15,11 +15,10 @@ export class TasksComponent implements OnInit {
   public constructor(private taskService: TaskService) {}
 
   public ngOnInit() {
-    // this.tasks = this.taskService.getTasks();
-
-    this.taskService.getTasks()
-      .then((tasks) => this.tasks = tasks)
-      .catch((error_msg) => console.log(error_msg));
+    this.taskService.getTasks().subscribe(
+      tasks => this.tasks = tasks,
+      error => alert('Ocorreu um erro ao tentar buscar as tasks')
+    )
   }
 
   public onSelect(task: Task): void {

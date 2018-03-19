@@ -1,6 +1,11 @@
-import { Http } from "@angular/http";
+import { Http, Response } from "@angular/http";
 import { Injectable } from '@angular/core'; // avisa pro angular que talvez essa classe de serviço tenha dependências para ser injetadas dentro dela
 //sempre que criar classe uma classe de serviço, deve-se usar o decorator Injectable
+
+
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/map'
+
 import { Task } from './task.model'
 
 const TASKS: Array<Task> = [
@@ -15,29 +20,20 @@ const TASKS: Array<Task> = [
 
 @Injectable()
 export class TaskService {
-  constructor(private http: Http) {
-    
+  public tasksUrl = 'api/tasks';
+
+  constructor(private http: Http) {}
+
+  public getTasks(): Observable<Task[]> {
+    return this.http.get(this.tasksUrl).map( (response: Response) => response.json().data as Task[]);
   }
 
-  public getTasks(): Promise<Task[]> {
-    let promise = new Promise<Task[]>((resolve, reject) => {
-      if (TASKS.length > 0) {
-        resolve(TASKS);
-      } else {
-        let error_msg = 'Não há tarefas';
-        reject(error_msg);
-      }
-    })
+  // public getImportantTasks(): Promise<Task[]> {
+  //   return Promise.resolve(TASKS.filter(t => t.id % 2 == 0) );
+  // }
 
-    return promise;
-  }
-
-  public getImportantTasks(): Promise<Task[]> {
-    return Promise.resolve(TASKS.filter(t => t.id % 2 == 0) );
-  }
-
-  public getTask(id: number): Promise<Task> {
-    return this.getTasks()
-      .then(tasks => tasks.find(task => task.id === id))
-  }
+  // public getTask(id: number): Promise<Task> {
+  //   return this.getTasks()
+  //     .then(tasks => tasks.find(task => task.id === id))
+  // }
 }
