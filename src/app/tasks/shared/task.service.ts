@@ -1,5 +1,5 @@
-import { Http, Response } from '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
+import { Headers, Http, Response } from '@angular/http';
+// import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core'; // avisa pro angular que talvez essa classe de serviço tenha dependências para ser injetadas dentro dela
 //sempre que criar classe uma classe de serviço, deve-se usar o decorator Injectable
 
