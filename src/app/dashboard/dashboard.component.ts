@@ -11,12 +11,12 @@ import { Task } from '../tasks/shared/task.model';
 export class DashboardComponent implements OnInit {
   public tasks: Task[];
 
-  public ngOnInit() {
-    this.taskService.getImportantTasks().subscribe(
-      tasks => this.tasks = tasks,
-      error => alert('Ocorreu um erro ao tentar buscar as tasks importantes: ' + error)
-    )
-  }
-
   public constructor(private taskService: TaskService) {}
+  
+  public ngOnInit() {
+    this.taskService.getImportantTasks().subscribe({
+      next: tasks => this.tasks = tasks,
+      error: error => alert('Ocorreu um erro ao tentar buscar as tasks importantes: ' + error)
+    });
+  }
 }

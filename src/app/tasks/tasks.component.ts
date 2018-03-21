@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
 import { Task } from './shared/task.model';
 import { TaskService } from './shared/task.service';
@@ -16,7 +16,7 @@ export class TasksComponent implements OnInit {
 
   public ngOnInit() {
     this.taskService.getTasks().subscribe(
-      tasks => this.tasks = tasks,
+      tasks => {this.tasks = tasks; console.log(tasks)},
       error => alert('Ocorreu um erro ao tentar buscar as tasks:' + error)
     )
   }

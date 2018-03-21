@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
@@ -36,5 +36,17 @@ export class TaskDetailComponent implements OnInit {
 
   public goBack() {
     this.location.back();
+  }
+
+  public update() {
+    if (!this.task.title) {
+      alert('A tarefa deve ter um titulo!');
+    }
+    else {
+      this.taskService.update(this.task).subscribe(
+        () => alert(`Tarefa ${this.task.id} atualizada com sucesso`),
+        error => alert('Ocorreu um erro no update de TaskDetailComponent: ' + error)
+      )
+    }
   }
 }
