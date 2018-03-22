@@ -3,11 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core'; // avisa pro angular que talvez essa classe de serviço tenha dependências para ser injetadas dentro dela
 //sempre que criar classe uma classe de serviço, deve-se usar o decorator Injectable
 
-
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
 import { Task } from './task.model';
 
