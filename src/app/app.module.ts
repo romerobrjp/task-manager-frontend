@@ -10,14 +10,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { TasksComponent } from  './tasks/tasks.component';
+import { TaskSearchComponent } from  './navbar/task-search/task-search.component';
 
 // Services
 import { TaskService } from './tasks/shared/task.service';
-import { InMemoryTaskDataService } from "./in-memory-task-data.service";
+import { InMemoryTaskDataService } from './in-memory-task-data.service';
 
 // Modules
-import { AppRoutingModule } from "./app-routing.module";
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { AppRoutingModule } from './app-routing.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InMemoryWebApiModule } from "angular-in-memory-web-api";
     DashboardComponent,
     NavbarComponent,
     TaskDetailComponent,
-    TasksComponent
+    TasksComponent,
+    TaskSearchComponent
   ],
   imports: [
     BrowserModule,
