@@ -17,20 +17,20 @@ export class TaskService {
 
   constructor(private http: Http) {}
 
-  public getTasks(): Observable<Task[]> {
+  public getAll(): Observable<Task[]> {
     return this.http.get(this.tasksUrl)
       .catch(this.handleErrors)
       .map((response: Response) => response.json().data as Task[]);
   }
 
-  public getImportantTasks(): Observable<Task[]> {
-    return this.getTasks()
+  public getImportant(): Observable<Task[]> {
+    return this.getAll()
       .catch(this.handleErrors)
       // .map(tasks => tasks.slice(0, 4));
       .map(tasks => tasks.filter(t => t.id % 2 == 0) );
   }
 
-  public getTask(id: number): Observable<Task> {
+  public getById(id: number): Observable<Task> {
     let url = `${this.tasksUrl}/${id}`;
 
     return this.http.get(url)

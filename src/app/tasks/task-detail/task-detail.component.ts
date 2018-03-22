@@ -27,7 +27,7 @@ export class TaskDetailComponent implements OnInit {
     // switchMap vai executar as coisas antes de passar pro subscribe
     this.route.params
     .switchMap(
-      (params: Params) => this.taskService.getTask(+params['id'])
+      (params: Params) => this.taskService.getById(+params['id'])
     )
     .subscribe(
       task => this.task = task,

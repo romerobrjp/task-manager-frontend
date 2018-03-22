@@ -17,7 +17,7 @@ export class TasksComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.taskService.getTasks().subscribe(
+    this.taskService.getAll().subscribe(
       tasks => this.tasks = tasks,
       error => alert('Ocorreu um erro ao tentar buscar as tasks:' + error)
     )
