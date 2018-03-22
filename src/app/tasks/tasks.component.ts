@@ -9,19 +9,33 @@ import { TaskService } from './shared/task.service';
 })
 
 export class TasksComponent implements OnInit {
-  public tasks: {};
-  public selectedTask: Task;
+  private newTask: Task;
+  public tasks: Array<Task>;
 
-  public constructor(private taskService: TaskService) {}
+  public constructor(private taskService: TaskService) {
+    this.newTask = new Task(null, '');
+  }
 
   public ngOnInit() {
     this.taskService.getTasks().subscribe(
-      tasks => {this.tasks = tasks; console.log(tasks)},
+      tasks => this.tasks = tasks,
       error => alert('Ocorreu um erro ao tentar buscar as tasks:' + error)
     )
   }
 
-  public onSelect(task: Task): void {
-    this.selectedTask = task;
+  public create() {
+    this.newTask.title = this.newTask.title.trim();
+
+    if (!this.newTask.title) {
+      alert('Tarefa sem título!');
+    } else {
+      this.taskService.create(this.newTask).subscribe(
+        task => {
+          this.tasks.push(task);
+          this.newTask = new Task(null, '');
+        },
+        error => alert('Erro ao tentar criar nova tarefa => ' + error)
+      )
+    }
   }
 }
