@@ -18,7 +18,7 @@ export class TasksComponent implements OnInit {
 
   public ngOnInit() {
     this.taskService.getAll().subscribe(
-      tasks => this.tasks = tasks,
+      tasks => this.tasks = tasks.sort((a, b) => b.id - a.id),
       error => alert('Ocorreu um erro ao tentar buscar as tasks:' + error)
     )
   }
@@ -31,7 +31,7 @@ export class TasksComponent implements OnInit {
     } else {
       this.taskService.create(this.newTask).subscribe(
         task => {
-          this.tasks.push(task);
+          this.tasks.unshift(task);
           this.newTask = new Task(null, '');
         },
         error => alert('Erro ao tentar criar nova tarefa => ' + error)

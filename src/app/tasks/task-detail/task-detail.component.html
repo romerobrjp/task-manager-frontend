@@ -1,7 +1,7 @@
 <div *ngIf="task">
   <h1 class="page-header text-center">Detalhes da tarefa <strong> {{ task?.title }} </strong> </h1>
 
-  <form #taskForm="ngForm" *ngIf="task">
+  <form #taskForm="ngForm" *ngIf="task" (ngSubmit)='update()'>
     <div class="row">
       <div
         class="form-group col-md-6 has-feedback" 
@@ -108,8 +108,8 @@
     
     <div class="form-group text-center">
       <div>
+        <button type="submit" class="btn btn-success" [disabled]="taskForm.invalid">Atualizar</button>
         <button class="btn btn-default" (click)="goBack()">Voltar</button>
-        <button type="submit" class="btn btn-success" (click)='update()' [disabled]="taskForm.invalid">Atualizar</button>
       </div>
     </div>
 
