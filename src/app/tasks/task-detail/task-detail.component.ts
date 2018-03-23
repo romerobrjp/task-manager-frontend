@@ -52,6 +52,10 @@ export class TaskDetailComponent implements OnInit {
     }
   }
 
+  public showFieldSuccess(field) {
+    return field.valid;
+  }
+
   public showFieldError(field) {
     return field.invalid && (field.touched || field.dirty);
   }
