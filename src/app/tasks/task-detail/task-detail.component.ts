@@ -25,6 +25,8 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   }
 
   public ngOnInit() {
+    this.task = new Task(null, '');
+
     // switchMap vai executar as coisas antes de passar pro subscribe
     this.route.params
     .switchMap(
@@ -37,7 +39,10 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    console.log('ngAfterViewInit');
+    $('#deadline').datetimepicker({
+      'sideBySide': true,
+      'locale': 'pt-br',
+    }).on('dp.change', () => this.task.deadline = $('#deadline').val());
   }
 
   public goBack() {

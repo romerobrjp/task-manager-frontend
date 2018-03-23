@@ -32,7 +32,8 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
 // jquery plugins
-import * as $ from 'jquery'
+import * as $ from 'jquery';
+import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
 
 @NgModule({
   declarations: [
