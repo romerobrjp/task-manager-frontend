@@ -61,7 +61,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     $('#deadline').datetimepicker({
       'sideBySide': true,
       'locale': 'pt-br',
-    }).on('dp.change', () => this.reactiveTaskForm.get('deadline').setValue($('#deadline').val() ));
+    }).on('dp.change', () => this.getField('deadline').setValue($('#deadline').val() ));
   }
 
   public setTask(task: Task): void {
