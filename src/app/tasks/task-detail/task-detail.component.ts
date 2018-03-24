@@ -47,10 +47,36 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit() {
+    // $('#deadline').datetimepicker({
+    //   'sideBySide': true,
+    //   'locale': 'pt-br',
+    // }).on('dp.change', () => this.task.deadline = $('#deadline').val());
+
     $('#deadline').datetimepicker({
       'sideBySide': true,
       'locale': 'pt-br',
-    }).on('dp.change', () => this.task.deadline = $('#deadline').val());
+    }).on('dp.change', () => this.reactiveTaskForm.get('deadline').setValue($('#deadline').val()));
+  }
+
+  public setTask(task: Task): void {
+    this.task = task;
+
+    //setValue
+    /* this.reactiveTaskForm.setValue({
+      title: task.title || null,
+      deadline: task.deadline || null,
+      done: task.done || null,
+      description: task.description || null
+    }); */
+
+    // patchValue
+    this.reactiveTaskForm.patchValue({
+      title: task.title || null,
+      deadline: task.deadline || null,
+      done: task.done || null,
+      description: task.description || null
+    })
+
   }
 
   public goBack() {
