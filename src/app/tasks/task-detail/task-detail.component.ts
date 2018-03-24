@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 
 import { Task } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
@@ -23,12 +23,13 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     private taskService: TaskService,
     private route: ActivatedRoute, // este objeto entrega as informações referentes à rota que está ativa no momento da navegação
     private location: Location,
+    private formBuilder: FormBuilder
   ) {
-    this.reactiveTaskForm = new FormGroup({
-      title: new FormControl(),
-      deadline: new FormControl(),
-      done: new FormControl(),
-      description: new FormControl()
+    this.reactiveTaskForm = this.formBuilder.group({
+      title: [null],
+      deadline: [null],
+      done: [null],
+      description: [null]
     })
   }
 
