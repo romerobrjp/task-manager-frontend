@@ -84,33 +84,4 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
       (error) => alert('Ocorreu um erro no update de TaskDetailComponent: ' + error)
     )
   }
-
-  // form errors methods
-  public fieldClassForErrorOrSuccess(fieldName: string) {
-    return {
-      'has-error': this.showFieldError(fieldName),
-      'has-success': this.getField(fieldName).valid
-    }
-  }
-
-  public iconClassForErrorOrSuccess(fieldName: string) {
-    return {
-      'glyphicon-remove': this.showFieldError(fieldName),
-      'glyphicon-ok': this.getField(fieldName).valid
-    }
-  }
-
-  public showFieldSuccess(fieldName: string) {
-    let field = this.getField(fieldName);
-    return field.valid;
-  }
-
-  public showFieldError(fieldName: string) {
-    let field = this.getField(fieldName);
-    return field.invalid && (field.touched || field.dirty);
-  }
-
-  public getField(fieldName: string) {
-    return this.reactiveTaskForm.get(fieldName);
-  }
 }
