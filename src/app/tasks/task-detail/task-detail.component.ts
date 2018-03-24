@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { Task } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
@@ -12,6 +13,7 @@ import { TaskService } from '../shared/task.service';
 
 export class TaskDetailComponent implements OnInit, AfterViewInit {
   public task: Task;
+  public reactiveTaskForm: FormGroup;
   public doneOptions:Array<any> = [
     { value: false, text: 'Pendente' },
     { value: true, text: 'Feito' }
@@ -20,8 +22,14 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   public constructor(
     private taskService: TaskService,
     private route: ActivatedRoute, // este objeto entrega as informações referentes à rota que está ativa no momento da navegação
-    private location: Location
+    private location: Location,
   ) {
+    this.reactiveTaskForm = new FormGroup({
+      title: new FormControl(),
+      deadline: new FormControl(),
+      done: new FormControl(),
+      description: new FormControl()
+    })
   }
 
   public ngOnInit() {
