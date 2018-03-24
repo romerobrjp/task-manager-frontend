@@ -29,8 +29,12 @@
       <td>
         <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
           Detalhes
+          <span class="glyphicon glyphicon-info-sign"></span>
         </a>
-        <button class="btn btn-danger" (click)="delete(task)">Excluir</button>
+        <button class="btn btn-danger" (click)="delete(task)">
+          Excluir
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
       </td>
     </tr>
   </tbody>
