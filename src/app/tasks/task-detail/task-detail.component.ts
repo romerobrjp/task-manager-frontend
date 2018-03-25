@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location, NgIf } from '@angular/common';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 
+import { FormUtils } from '../../shared/form-utils';
 import { Task } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
 
@@ -14,8 +15,9 @@ import { TaskService } from '../shared/task.service';
 
 export class TaskDetailComponent implements OnInit, AfterViewInit {
   public task: Task;
-  public reactiveTaskForm: FormGroup;
+  public form: FormGroup;
   public doneOptions:Array<any>;
+  public formUtils: FormUtils;
 
   public constructor(
     private taskService: TaskService,
@@ -28,12 +30,14 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
       { value: true, text: 'Feito' }
     ];
 
-    this.reactiveTaskForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
       deadline: [null, Validators.required],
       done: [null, Validators.required],
       description: [null]
     })
+
+    this.formUtils = new FormUtils(this.form);
   }
 
   public ngOnInit() {
@@ -61,12 +65,12 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     $('#deadline').datetimepicker({
       'sideBySide': true,
       'locale': 'pt-br',
-    }).on('dp.change', () => this.getField('deadline').setValue($('#deadline').val() ));
+    }).on('dp.change', () => this.formUtils.getField('deadline').setValue($('#deadline').val() ));
   }
 
   public setTask(task: Task): void {
     this.task = task;
-    this.reactiveTaskForm.patchValue(task);
+    this.form.patchValue(task);
   }
 
   public goBack() {
@@ -74,10 +78,10 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   }
 
   public update() {
-    this.task.title = this.reactiveTaskForm.get('title').value;
-    this.task.deadline = this.reactiveTaskForm.get('deadline').value;
-    this.task.done = this.reactiveTaskForm.get('done').value;
-    this.task.description = this.reactiveTaskForm.get('description').value;
+    this.task.title = this.form.get('title').value;
+    this.task.deadline = this.form.get('deadline').value;
+    this.task.done = this.form.get('done').value;
+    this.task.description = this.form.get('description').value;
     
     this.taskService.update(this.task).subscribe(
       () => alert(`Tarefa ${this.task.id} atualizada com sucesso`),

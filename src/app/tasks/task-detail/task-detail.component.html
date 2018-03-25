@@ -1,47 +1,47 @@
 <h1 class="page-header text-center">Detalhes da tarefa: <strong> {{ task?.title }} </strong> </h1>
 
-<form [formGroup]="reactiveTaskForm" (ngSubmit)="update()">
+<form [formGroup]="form" (ngSubmit)="update()">
   <div class="row">
     <div 
       class="form-group col-md-6 has-feedback"
-      [ngClass]="fieldClassForErrorOrSuccess('title')"
+      [ngClass]="formUtils.fieldClassForErrorOrSuccess('title')"
     >
       <label for="title" class="control-label">Título</label>
       <input id="title" type="text" name="title" class="form-control" formControlName="title">
 
       <span
         class="glyphicon form-control-feedback"
-        [ngClass]="iconClassForErrorOrSuccess('title')"
+        [ngClass]="formUtils.iconClassForErrorOrSuccess('title')"
       ></span>
 
-      <div class="text-danger" *ngIf="showFieldError('title')">
-        <div *ngIf="reactiveTaskForm.get('title').errors.required"><strong>Título</strong> é obrigatório</div>
-        <div *ngIf="reactiveTaskForm.get('title').errors.minlength"><strong>Título</strong> deve ter no mínimo 2 caracteres</div>
-        <div *ngIf="reactiveTaskForm.get('title').errors.maxlength"><strong>Título</strong> deve ter no máximo 255 caracteres</div>
+      <div class="text-danger" *ngIf="formUtils.showFieldError('title')">
+        <div *ngIf="form.get('title').errors.required"><strong>Título</strong> é obrigatório</div>
+        <div *ngIf="form.get('title').errors.minlength"><strong>Título</strong> deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('title').errors.maxlength"><strong>Título</strong> deve ter no máximo 255 caracteres</div>
       </div>
     </div>
 
     <div 
       class="form-group col-md-3 has-feedback"
-      [ngClass]="fieldClassForErrorOrSuccess('deadline')"
+      [ngClass]="formUtils.fieldClassForErrorOrSuccess('deadline')"
     >
       <label for="deadline" class="control-label">Prazo de entrega</label>
       <input id="deadline" type="text" name="deadline" class="form-control" formControlName="deadline">
 
       <span
         class="glyphicon form-control-feedback"
-        [ngClass]="iconClassForErrorOrSuccess('deadline')"
+        [ngClass]="formUtils.iconClassForErrorOrSuccess('deadline')"
         style="margin-right: 20px"
       ></span>
 
-      <div class="text-danger" *ngIf="showFieldError('deadline')">
-        <div *ngIf="reactiveTaskForm.get('deadline').errors.required"><strong>Prazo de entrega</strong> é obrigatório</div>
+      <div class="text-danger" *ngIf="formUtils.showFieldError('deadline')">
+        <div *ngIf="form.get('deadline').errors.required"><strong>Prazo de entrega</strong> é obrigatório</div>
       </div>
     </div>
 
     <div
       class="form-group col-md-3 has-feedback"
-      [ngClass]="fieldClassForErrorOrSuccess('done')"
+      [ngClass]="formUtils.fieldClassForErrorOrSuccess('done')"
     >
       <label for="done" class="control-label">Situação</label>
       <select 
@@ -54,12 +54,12 @@
 
       <span
         class="glyphicon form-control-feedback"
-        [ngClass]="iconClassForErrorOrSuccess('done')"
+        [ngClass]="formUtils.iconClassForErrorOrSuccess('done')"
         style="margin-right: 30px"
       ></span>
 
-      <div class="text-danger" *ngIf="showFieldError('done')">
-        <div *ngIf="reactiveTaskForm.get('done').errors.required"><strong>Situação</strong> é obrigatória</div>
+      <div class="text-danger" *ngIf="formUtils.showFieldError('done')">
+        <div *ngIf="form.get('done').errors.required"><strong>Situação</strong> é obrigatória</div>
       </div>
     </div>
   </div>
@@ -73,10 +73,10 @@
 
   <div class="form-group text-center">
     <div>
-      <button type="submit" class="btn btn-success" [disabled]="reactiveTaskForm.invalid">Atualizar</button>
+      <button type="submit" class="btn btn-success" [disabled]="form.invalid">Atualizar</button>
       <button type="button" class="btn btn-default" (click)="goBack()">Voltar</button>
     </div>
   </div>
 
-  <pre>{{ reactiveTaskForm.value | json }}</pre>
+  <pre>{{ form.value | json }}</pre>
 </form>
