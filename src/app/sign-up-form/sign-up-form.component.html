@@ -1,30 +1,54 @@
 <div class="jumbotron">
-  <form class="form-horizontal" [formGroup]="userForm" (ngSubmit)="signUpUser()">
-    <div class="form-group">
+  <form class="form-horizontal" [formGroup]="form" (ngSubmit)="signUpUser()">
+    <div class="form-group has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-sm-4 control-label">Nome</label>
       <div class="col-sm-4">
         <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome aqui..." formControlName="name">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+        <div class="text-danger" *ngIf="formUtils.showFieldError('name')">
+          <div *ngIf="form.get('name').errors.required"><strong>Nome</strong> é obrigatório</div>
+          <div *ngIf="form.get('name').errors.minlength"><strong>Nome</strong> deve ter no mínimo 4 caracteres</div>
+          <div *ngIf="form.get('name').errors.maxlength"><strong>Nome</strong> deve ter no máximo 100 caracteres</div>
+        </div>
       </div>
     </div>
   
-    <div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('email')">
       <label for="email" class="col-sm-4 control-label">Email</label>
       <div class="col-sm-4">
         <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail aqui..." formControlName="email">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('email')"></span>
+
+        <div class="text-danger" *ngIf="formUtils.showFieldError('email')">
+          <div *ngIf="form.get('email').errors.required"><strong>E-mail</strong> é obrigatório</div>
+        </div>
       </div>
     </div>
   
-    <div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('password')">
       <label for="password" class="col-sm-4 control-label">Senha</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="password" name="password" placeholder="Sua senha aqui..." formControlName="password">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('password')"></span>
+
+        <div class="text-danger" *ngIf="formUtils.showFieldError('password')">
+          <div *ngIf="form.get('password').errors.required"><strong>Senha</strong> é obrigatória</div>
+          <div *ngIf="form.get('password').errors.minlength"><strong>Senha</strong> deve ter no mínimo 6 caracteres</div>
+        </div>
       </div>
     </div>
     
-    <div class="form-group">
-      <label for="password" class="col-sm-4 control-label">Confirmação de senha</label>
+    <div class="form-group has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('password_confirmation')">
+      <label for="password_confirmation" class="col-sm-4 control-label">Confirmação de senha</label>
       <div class="col-sm-4">
         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirme sua senha aqui..." formControlName="password_confirmation">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('password_confirmation')"></span>
+
+        <div class="text-danger" *ngIf="formUtils.showFieldError('password_confirmation')">
+          <div *ngIf="form.get('password_confirmation').errors.required"><strong>Confirmação de senha</strong> é obrigatória</div>
+          <div *ngIf="form.get('password_confirmation').errors.minlength"><strong>Confirmação de senha</strong> deve ter no mínimo 6 caracteres</div>
+        </div>
       </div>
     </div>
   
