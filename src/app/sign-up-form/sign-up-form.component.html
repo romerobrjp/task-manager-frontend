@@ -48,6 +48,7 @@
         <div class="text-danger" *ngIf="formUtils.showFieldError('password_confirmation')">
           <div *ngIf="form.get('password_confirmation').errors.required"><strong>Confirmação de senha</strong> é obrigatória</div>
           <div *ngIf="form.get('password_confirmation').errors.minlength"><strong>Confirmação de senha</strong> deve ter no mínimo 6 caracteres</div>
+          <div *ngIf="form.get('password_confirmation').errors.mismatch"><strong>Senha e Confirmação de senha</strong> não coincidem</div>
         </div>
       </div>
     </div>

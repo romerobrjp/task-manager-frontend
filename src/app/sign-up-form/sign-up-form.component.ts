@@ -18,7 +18,7 @@ export class SignUpFormComponent {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       password_confirmation: [null, [Validators.required, Validators.minLength(6)]]
-    })
+    }, { validator: this.passwordConfirmationValidator })
 
     this.formUtils = new FormUtils(this.form);
   }
@@ -26,5 +26,13 @@ export class SignUpFormComponent {
   public signUpUser() {
     console.log('Form signUp enviado');
     console.log(this.form.value);
+  }
+
+  public passwordConfirmationValidator(form: FormGroup) {
+    if (form.get('password').dirty && form.get('password').value === form.get('password_confirmation').value) {
+      form.get('password_confirmation').setErrors(null)
+    } else {
+      form.get('password_confirmation').setErrors({ mismatch: true })
+    }
   }
 }
