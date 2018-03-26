@@ -13,8 +13,10 @@ export class AuthService {
 
   }
 
-  public signUp(user: User) {
+  public signUp(user: User): Observable<Response> {
+    console.log(user);
     
+    return this.tokenService.registerAccount(user as any).catch(this.handleErrors)
   }
 
   public signIn(uid: string, password: string) {
@@ -27,5 +29,10 @@ export class AuthService {
 
   public userSignedIn() {
     
+  }
+
+  public handleErrors(error: Response) {
+    console.error('Deu erro', error);
+    return Observable.throw(error);
   }
 }

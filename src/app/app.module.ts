@@ -60,7 +60,7 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule,
+    AppRoutingModule
     // InMemoryWebApiModule.forRoot(InMemoryTaskDataService, { apiBase: 'api'} )
     // InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
