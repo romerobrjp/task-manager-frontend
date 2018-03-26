@@ -29,10 +29,12 @@ export class SignUpFormComponent {
     
     this.authService.signUp(this.form.value as User)
       .subscribe(
-        () => {
+        response => {
+          console.log(response);
           alert('Parabéns, conta criada com sucesso');
           this.router.navigate(['/dashboard']);
-        }
+        },
+        error =>  console.log('Deu merda: no signUpUser: ', error)
       )
   }
 
