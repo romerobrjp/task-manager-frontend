@@ -7,19 +7,24 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { TasksComponent } from  './tasks/tasks.component';
 
+import { AuthGuard } from "./guards/auth.guard";
+
 // forRoot vai retornar um modulo com todas as configuracoes das rotas da app
 const ROUTES = RouterModule.forRoot([
   {
     path: 'tasks/:id',
-    component: TaskDetailComponent
+    component: TaskDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'tasks',
-    component: TasksComponent
+    component: TasksComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'sign-up',

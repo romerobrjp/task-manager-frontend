@@ -20,11 +20,11 @@ import { TaskSearchComponent } from './navbar/task-search/task-search.component'
 // Services
 import { AuthService } from './shared/auth.service';
 import { TaskService } from './tasks/shared/task.service';
-import { InMemoryTaskDataService } from './in-memory-task-data.service';
+// import { InMemoryTaskDataService } from './in-memory-task-data.service';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // rxjs operators: são usados no subscribe
 import 'rxjs/add/operator/debounceTime';
@@ -36,6 +36,9 @@ import 'rxjs/add/operator/catch';
 // rxjs extensions
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
+
+// Guards
+import { AuthGuard } from "./guards/auth.guard";
 
 // jquery plugins
 import * as $ from 'jquery';
@@ -59,12 +62,13 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     HttpModule,
     AppRoutingModule,
     // InMemoryWebApiModule.forRoot(InMemoryTaskDataService, { apiBase: 'api'} )
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    // InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [
     Angular2TokenService,
+    AuthGuard,
     AuthService,
-    TaskService 
+    TaskService
   ],
   bootstrap: [AppComponent]
 })
