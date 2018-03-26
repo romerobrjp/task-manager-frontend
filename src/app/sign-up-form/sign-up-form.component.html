@@ -1,4 +1,13 @@
 <div class="jumbotron">
+  <div class="alert alert-danger text-center" *ngIf="formErrors">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    <strong>Ocorreu um erro ao tentar criar a sua conta no sistema.</strong>
+
+    <ul>
+      <li *ngFor="let error of formErrors">{{ error }}</li>
+    </ul>
+  </div>
+
   <form class="form-horizontal" [formGroup]="form" (ngSubmit)="signUpUser()">
     <div class="form-group has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
       <label for="name" class="col-sm-4 control-label">Nome</label>

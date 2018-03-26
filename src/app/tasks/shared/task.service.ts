@@ -78,7 +78,6 @@ export class TaskService {
   // PRIVATE METHODS -----------------------------------------------------------
 
   private handleErrors(error: Response) {
-    console.log('Deu erro: ', error);
     return Observable.throw(error);
   }
 }

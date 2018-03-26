@@ -14,6 +14,8 @@ import { User } from "../shared/user.model";
 export class SignUpFormComponent {
   public form: FormGroup;
   public formUtils: FormUtils;
+  public submitted: boolean;
+  public formErrors: Array<string>;
 
   public constructor(
     private formBuilder: FormBuilder,
@@ -22,19 +24,30 @@ export class SignUpFormComponent {
   ) {
     this.setupForm();
     this.formUtils = new FormUtils(this.form);
+    this.submitted = false;
+    this.formErrors = null;
   }
 
   public signUpUser() {
-    console.log('entrou no signUpUser()');
-    
+    this.submitted = true;
+
     this.authService.signUp(this.form.value as User)
       .subscribe(
-        response => {
-          console.log(response);
+        success => {
+          console.log(success);
           alert('Parabéns, conta criada com sucesso');
+          this.formErrors = null;
           this.router.navigate(['/dashboard']);
         },
-        error =>  console.log('Deu merda: no signUpUser: ', error)
+        error => {
+          this.submitted = false;
+          if (error.status === 422) {
+            this.formErrors = JSON.parse(error._body).errors.full_messages;
+          }
+          else {
+            this.formErrors = ['Ocorreu um erro e não foi possível cadastrar o usuário. Tente novamente mais tarde.']
+          }
+        }
       )
   }
 

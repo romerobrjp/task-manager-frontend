@@ -30,7 +30,6 @@ export class AuthService {
   }
 
   public handleErrors(error: Response) {
-    console.error('Deu erro', error);
     return Observable.throw(error);
   }
 }
