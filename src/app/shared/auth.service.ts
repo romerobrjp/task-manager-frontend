@@ -17,7 +17,7 @@ export class AuthService {
     
   }
 
-  public signIn(userId: string, password: string) {
+  public signIn(uid: string, password: string) {
 
   }
 
@@ -25,7 +25,7 @@ export class AuthService {
     
   }
 
-  public isUserSignIn() {
+  public userSignedIn() {
     
   }
 }
