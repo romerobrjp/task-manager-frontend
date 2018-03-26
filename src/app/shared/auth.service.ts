@@ -25,8 +25,8 @@ export class AuthService {
     
   }
 
-  public userSignedIn() {
-    
+  public userSignedIn(): boolean {
+    return this.tokenService.userSignedIn();
   }
 
   public handleErrors(error: Response) {
