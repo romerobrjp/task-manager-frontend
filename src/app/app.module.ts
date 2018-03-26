@@ -39,6 +39,7 @@ import 'rxjs/add/observable/throw';
 
 // Guards
 import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 // jquery plugins
 import * as $ from 'jquery';
@@ -68,6 +69,7 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     Angular2TokenService,
     AuthGuard,
     AuthService,
+    NotAuthenticatedGuard,
     TaskService
   ],
   bootstrap: [AppComponent]

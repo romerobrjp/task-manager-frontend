@@ -16,7 +16,14 @@ export class DashboardComponent implements OnInit {
   public ngOnInit() {
     this.taskService.getImportant().subscribe({
       next: tasks => this.tasks = tasks,
-      error: error => alert('Ocorreu um erro ao tentar buscar as tasks importantes: ' + error)
+      error: error => {
+        if (error.status === 401) {
+          alert('Você precisa estar logado para acessar esta página.')
+        }
+        else {
+          alert('Ocorreu um erro ao tentar buscar as tasks importantes: \n' + error)
+        }
+      }
     });
   }
 }

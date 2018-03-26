@@ -8,6 +8,7 @@ import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { TasksComponent } from  './tasks/tasks.component';
 
 import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 // forRoot vai retornar um modulo com todas as configuracoes das rotas da app
 const ROUTES = RouterModule.forRoot([
@@ -28,11 +29,11 @@ const ROUTES = RouterModule.forRoot([
   },
   {
     path: 'sign-up',
-    component: SignUpFormComponent
+    component: SignUpFormComponent, canActivate: [NotAuthenticatedGuard]
   },
   {
     path: 'sign-in',
-    component: SignInFormComponent
+    component: SignInFormComponent, canActivate: [NotAuthenticatedGuard]
   },
   {
     path: '',
