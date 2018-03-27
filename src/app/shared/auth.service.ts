@@ -14,11 +14,15 @@ export class AuthService {
   }
 
   public signUp(user: User): Observable<Response> {
-    return this.tokenService.registerAccount(user as any).catch(this.handleErrors)
+    return this.tokenService.registerAccount(user as any).catch(this.handleErrors);
   }
 
-  public signIn(uid: string, password: string) {
-
+  public signIn(uid: string, password: string): Observable<Response> {
+    let signInData = {
+      email: uid,
+      password: password 
+    };
+    return this.tokenService.signIn(signInData).catch(this.handleErrors);
   }
 
   public signOut(): Observable<Response> {
@@ -30,6 +34,7 @@ export class AuthService {
   }
 
   public handleErrors(error: Response) {
+    console.log('AuthService.handleErrors: ', error);
     return Observable.throw(error);
   }
 }

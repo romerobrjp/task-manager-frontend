@@ -1,6 +1,15 @@
 <h1 class="page-header text-center">Fazer login</h1>
 
 <div class="jumbotron">
+  <div class="alert alert-danger text-center" *ngIf="formErrors">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    <strong>Ocorreu um erro ao tentar realizar login no sistema.</strong>
+
+    <ul>
+      <li *ngFor="let error of formErrors">{{ error }}</li>
+    </ul>
+  </div>
+
   <form class="form-horizontal" [formGroup]="form" (ngSubmit)="signInUser()">
     <div class="form-group has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('email')">
       <label for="email" class="col-sm-4 control-label">Email</label>
