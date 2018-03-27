@@ -27,9 +27,16 @@
         </li>
       </ul>
 
-       <div class="navbar-form navbar-right">
+       <div class="navbar-form navbar-left">
          <task-search></task-search>
        </div>
+
+       <div class="navbar-form navbar-right">
+        <button type="button" class="btn btn-danger" (click)="signOutUser()">
+          Sair
+          <span class="glyphicon glyphicon-log-out"></span>
+        </button>
+      </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

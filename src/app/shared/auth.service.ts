@@ -21,8 +21,8 @@ export class AuthService {
 
   }
 
-  public signOut() {
-    
+  public signOut(): Observable<Response> {
+    return this.tokenService.signOut().catch(this.handleErrors);
   }
 
   public userSignedIn(): boolean {
