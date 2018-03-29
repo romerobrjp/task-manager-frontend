@@ -12,7 +12,11 @@
     <tr *ngFor="let task of tasks">
       <td>{{task.title}}</td>
       <td>
-        <a [routerLink]="['/tasks', task.id]" class="btn btn-info">Detalhes</a>
+        <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
+          Detalhes
+          <span class="glyphicon glyphicon-info-sign"></span>
+        </a>
+        
       </td>
     </tr>
   </tbody>
