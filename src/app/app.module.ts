@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Angular plugins
-import { Angular2TokenService } from "angular2-token";
+import { TokenService } from './shared/token.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -66,11 +66,11 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     // InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [
-    Angular2TokenService,
     AuthGuard,
     AuthService,
     NotAuthenticatedGuard,
-    TaskService
+    TaskService,
+    TokenService
   ],
   bootstrap: [AppComponent]
 })

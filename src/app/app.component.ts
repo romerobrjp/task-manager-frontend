@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Task } from './tasks/shared/task.model';
 
-import { Angular2TokenService } from "angular2-token";
+import { TokenService } from './shared/token.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { Angular2TokenService } from "angular2-token";
 })
 
 export class AppComponent {
-  public constructor(private tokenService: Angular2TokenService) {
+  public constructor(private tokenService: TokenService) {
     this.tokenService.init({
       apiBase: 'http://api.taskmanager.test:3000',
       globalOptions: {

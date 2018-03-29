@@ -6,18 +6,18 @@ import { Injectable } from '@angular/core'; // avisa pro angular que talvez essa
 import { Observable } from 'rxjs/Observable';
 
 import { Task } from './task.model';
-import { Angular2TokenService } from 'angular2-token';
+import { TokenService } from '../../shared/token.service';
 
 @Injectable()
 export class TaskService {
   public tasksUrl = 'tasks';
 
-  constructor(private tokenHttp: Angular2TokenService) {}
+  constructor(private tokenService: TokenService) {}
 
   public getAll(): Observable<Task[]> {
     const url = `${this.tasksUrl}?q[s]=updated_at+DESC`;
 
-    return this.tokenHttp.get(url)
+    return this.tokenService.get(url)
       .catch(this.handleErrors)
       .map((response: Response) => this.responseToTasks(response));
   }
@@ -25,7 +25,7 @@ export class TaskService {
   public getImportant(): Observable<Task[]> {
     const url = `${this.tasksUrl}?q[s]=deadline+ASC`;
 
-    return this.tokenHttp.get(url)
+    return this.tokenService.get(url)
       .catch(this.handleErrors)
       .map((response: Response) => this.responseToTasks(response))
   }
@@ -33,7 +33,7 @@ export class TaskService {
   public getById(id: number): Observable<Task> {
     const url = `${this.tasksUrl}/${id}`;
 
-    return this.tokenHttp.get(url)
+    return this.tokenService.get(url)
       .catch(this.handleErrors)
       .map((response: Response) => this.responseTotAsk(response));
   }
@@ -42,7 +42,7 @@ export class TaskService {
     const url = `${this.tasksUrl}`;
     const body = JSON.stringify(task);
 
-    return this.tokenHttp.post(url, body)
+    return this.tokenService.post(url, body)
       .catch(this.handleErrors)
       .map(response => this.responseTotAsk(response))
   }
@@ -51,7 +51,7 @@ export class TaskService {
     const url = `${this.tasksUrl}/${task.id}`;
     const body = JSON.stringify(task);
 
-    return this.tokenHttp.put(url, body)
+    return this.tokenService.put(url, body)
       .catch(this.handleErrors)
       .map(() => task)
   }
@@ -59,7 +59,7 @@ export class TaskService {
   public delete(id: Number): Observable<null> {
     const url = `${this.tasksUrl}/${id}`;
 
-    return this.tokenHttp.delete(url)
+    return this.tokenService.delete(url)
       .catch(this.handleErrors)
       .map(() => null)
   }
@@ -68,7 +68,7 @@ export class TaskService {
     // let url = `${this.tasksUrl}?title=${term}`;
     const url = `${this.tasksUrl}?q[title_cont]=${term}`;
 
-    return this.tokenHttp.get(url)
+    return this.tokenService.get(url)
       .catch(this.handleErrors)
       .map(response => this.responseToTasks(response))
   }
@@ -105,6 +105,6 @@ export class TaskService {
       response.json().data.attributes.description,
       response.json().data.attributes.done,
       response.json().data.attributes['deadline-to-br']
-    )
+    );
   }
 }
